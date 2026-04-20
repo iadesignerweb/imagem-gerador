@@ -39,8 +39,8 @@
       -webkit-backdrop-filter: blur(25px);
       width: 100%;
       max-width: 650px;
-      margin: 15px; /* Margem mobile menor */
-      padding: 25px; /* Padding mobile ajustado */
+      margin: 15px;
+      padding: 25px;
       border-radius: 28px;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
       box-sizing: border-box;
@@ -50,8 +50,8 @@
     /* Menu Toggle - Posicionamento Limpo */
     .menu-toggle {
       position: absolute;
-      top: 25px; /* Padding do container */
-      left: 25px; /* Padding do container */
+      top: 25px;
+      left: 25px;
       width: 25px;
       height: 20px;
       display: flex;
@@ -91,7 +91,7 @@
       transform: translateX(-100%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 999;
-      padding-top: 100px; /* Mais espaço no topo */
+      padding-top: 100px;
       border-right: 1px solid var(--border-color);
     }
     .sidebar.open {
@@ -165,14 +165,14 @@
     }
     .modal-content b { color: var(--text-light); }
 
-    /* Header e Título - Mobile Limpo */
+    /* Header e Título */
     .header {
       text-align: center;
-      margin-top: 60px; /* Espaço para o menu hambúrguer */
+      margin-top: 60px;
       margin-bottom: 30px;
     }
     .panel-title {
-      font-size: 32px; /* Ajuste mobile */
+      font-size: 32px;
       font-weight: 600;
       color: #fff;
       margin: 0;
@@ -180,7 +180,7 @@
       text-shadow: 0 2px 12px rgba(0,0,0,0.6);
     }
     .panel-subtitle {
-      font-size: 13px; /* Ajuste mobile */
+      font-size: 13px;
       color: var(--primary-color);
       margin-top: 10px;
       font-weight: 400;
@@ -193,7 +193,7 @@
         margin-bottom: 25px;
     }
     .section-title {
-      font-size: 12px; /* Ajuste mobile */
+      font-size: 12px;
       margin-bottom: 12px;
       color: var(--text-medium);
       font-weight: 600;
@@ -225,7 +225,7 @@
       box-shadow: 0 0 20px rgba(0, 204, 255, 0.2), inset 0 3px 6px rgba(0,0,0,0.4);
     }
 
-    /* Grids e Cartões - Mobile Responsivo */
+    /* Grids e Cartões */
     .creation-examples, .styles-grid, .ratio-grid {
       display: grid;
       gap: 12px;
@@ -241,7 +241,7 @@
       .content-container { padding: 20px; margin: 10px; border-radius: 24px;}
       .header { margin-top: 50px; }
       .panel-title { font-size: 28px; }
-      .card-img-wrapper { height: 70px; } /* Ajuste altura imagem mobile */
+      .card-img-wrapper { height: 70px; }
     }
 
     .style-card, .example-card, .ratio-card {
@@ -269,6 +269,7 @@
         border-radius: 10px;
         overflow: hidden;
         border: 1px solid rgba(255,255,255,0.05);
+        background: #222; /* Fundo escuro enquanto carrega */
     }
     .card-img {
         width: 100%;
@@ -291,7 +292,7 @@
     }
     .style-card span, .example-card span, .ratio-card span {
         font-weight: 600;
-        font-size: 11px; /* Ajuste mobile */
+        font-size: 11px;
         line-height: 1.4;
     }
 
@@ -445,27 +446,27 @@
         <div class="section-title">Estilos Cinematográficos</div>
         <div class="styles-grid">
             <div class="style-card" data-style="masterpiece, highly detailed, digital art, vibrant colors, cyberpunk aesthetic">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/cyberpunk%20metropolis%20at%20night%2C%20neon%20lights%2C%20flying%20vehicles%2C%20highly%20detailed%2C%20masterpiece" class="card-img" alt="Arte Digital"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=400&q=80" class="card-img" alt="Arte Digital"></div>
                 <span>Arte Digital</span>
             </div>
             <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography, macro realism, shot on kodak film">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/hyper-realistic%20portrait%20of%20a%20human%2C%20cinematic%20lighting%2C%208k%20resolution%2C%20macro%20details%2C%20kodak%20film" class="card-img" alt="Fotorrealista"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" class="card-img" alt="Fotorrealista"></div>
                 <span>Fotorrealista</span>
             </div>
             <div class="style-card" data-style="watercolor painting, soft edges, artistic, brush strokes, dreamy atmosphere">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/dreamy%20watercolor%20painting%20of%20a%20serene%20lake%2C%20soft%20edges%2C%20artistic%20brush%20strokes" class="card-img" alt="Aquarela"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1580136608260-4eb11f4b24fe?w=400&q=80" class="card-img" alt="Aquarela"></div>
                 <span>Aquarela</span>
             </div>
             <div class="style-card" data-style="3d render, octane render, unreal engine 5, smooth lighting, volumetric lighting">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/smooth%203d%20render%20of%20a%20futuristic%20robot%2C%20unreal%20engine%205%2C%20volumetric%20lighting%2C%20octane%20render" class="card-img" alt="Render 3D"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80" class="card-img" alt="Render 3D"></div>
                 <span>Render 3D</span>
             </div>
             <div class="style-card" data-style="vintage film photography, highly detailed, kodak vision3, fine grain, shot on 35mm film">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/vintage%2035mm%20film%20photography%20of%20an%20old%20city%20street%2C%20kodak%20vision3%2C%20highly%20detailed%2C%20fine%20grain" class="card-img" alt="Película Vintage"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534604973900-c43aa417faba?w=400&q=80" class="card-img" alt="Película Vintage"></div>
                 <span>Película Vintage</span>
             </div>
             <div class="style-card" data-style="dreamy fantasy art, magical realism, glowing lights, intricate details, mythical creatures">
-                <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/glowing%20magical%20forest%20at%20night%2C%20dreamy%20fantasy%20art%2C%20intricate%20details%2C%20mythical%20creatures" class="card-img" alt="Fantasia"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" class="card-img" alt="Fantasia"></div>
                 <span>Fantasia</span>
             </div>
         </div>
@@ -475,15 +476,15 @@
       <div class="section-title">Inspirações Rápidas</div>
       <div class="creation-examples">
         <div class="example-card" data-prompt="A futuristic city skyline at sunset, with flying vehicles and glowing neon signs, altamente detalhada">
-          <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/futuristic%20city%20skyline%20at%20sunset%2C%20flying%20vehicles%2C%20glowing%20neon%20signs%2C%20highly%20detailed" class="card-img" alt="Metrópole"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=80" class="card-img" alt="Metrópole"></div>
           <span>Metrópole Futurista</span>
         </div>
         <div class="example-card" data-prompt="A majestic lion portrait in the savanna, golden hour lighting, cinematic shot">
-          <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/majestic%20lion%20portrait%20in%20savanna%2C%20golden%20hour%20lighting%2C%20cinematic%20shot" class="card-img" alt="Leão"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&q=80" class="card-img" alt="Leão"></div>
           <span>Retrato Selvagem</span>
         </div>
         <div class="example-card" data-prompt="A vintage classic car parked on an old cobblestone street, cinematic atmosphere, altamente detalhada">
-          <div class="card-img-wrapper"><img src="https://image.pollinations.ai/prompt/vintage%20classic%20car%20on%20old%20cobblestone%20street%2C%20cinematic%20atmosphere%2C%20highly%20detailed" class="card-img" alt="Carro"></div>
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80" class="card-img" alt="Carro"></div>
           <span>Cenário Clássico</span>
         </div>
       </div>
@@ -674,6 +675,7 @@
   </script>
 </body>
 </html>
+
 
 
 
