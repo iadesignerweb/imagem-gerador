@@ -9,12 +9,12 @@
 
     :root {
       --primary-color: #00CCFF;
-      --background-dark: #0a0a0a;
-      --background-medium: rgba(30, 30, 30, 0.6);
-      --background-light: rgba(255, 255, 255, 0.05);
-      --text-light: #EAEAEA;
-      --text-medium: #BBB;
-      --border-color: rgba(255, 255, 255, 0.1);
+      --background-dark: #121212; /* Tom grafite base */
+      --background-medium: rgba(30, 30, 30, 0.65);
+      --background-light: rgba(255, 255, 255, 0.08);
+      --text-light: #F0F0F0;
+      --text-medium: #CCCCCC;
+      --border-color: rgba(255, 255, 255, 0.15);
       --button-gradient-start: #00CCFF;
       --button-gradient-end: #0077FF;
     }
@@ -23,10 +23,14 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      /* Fundo animado premium */
-      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      /* Fundo com Imagem Premium e Overlay Grafite */
+      background-color: var(--background-dark);
+      background-image: 
+        linear-gradient(to bottom, rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), 
+        url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: var(--text-light);
       display: flex;
       justify-content: center;
@@ -36,37 +40,30 @@
       overflow-x: hidden;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .content-container {
-      background: rgba(20, 20, 25, 0.75);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
+      background: rgba(20, 20, 25, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       width: 100%;
       max-width: 650px;
-      margin: 20px;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      margin: 30px 20px;
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
       box-sizing: border-box;
-      border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
 
     /* Menu Toggle */
     .menu-toggle {
       position: absolute;
-      top: 25px;
-      left: 25px;
+      top: 30px;
+      left: 30px;
       width: 25px;
       height: 20px;
       display: flex;
@@ -98,15 +95,15 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 260px;
+      width: 280px;
       height: 100%;
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+      background: rgba(15, 15, 15, 0.98);
+      backdrop-filter: blur(15px);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.7);
       transform: translateX(-100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 999;
-      padding-top: 80px;
+      padding-top: 90px;
       border-right: 1px solid var(--border-color);
     }
     .sidebar.open {
@@ -119,17 +116,18 @@
     }
     .sidebar li a {
       display: block;
-      padding: 15px 25px;
+      padding: 18px 30px;
       color: var(--text-light);
       text-decoration: none;
       font-size: 16px;
-      border-bottom: 1px solid var(--border-color);
+      font-weight: 400;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.2s;
     }
     .sidebar li a:hover {
       background: var(--background-light);
       color: var(--primary-color);
-      padding-left: 30px;
+      padding-left: 35px;
     }
 
     /* Modal */
@@ -139,28 +137,28 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.85);
         display: none;
         justify-content: center;
         align-items: center;
         z-index: 1000;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(8px);
     }
     .modal-content {
-        background: #1e1e24;
-        padding: 30px;
-        border-radius: 16px;
+        background: #181818;
+        padding: 35px;
+        border-radius: 20px;
         max-width: 450px;
         text-align: left;
         position: relative;
         border: 1px solid var(--border-color);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     }
     .modal-close {
         position: absolute;
         top: 15px;
         right: 20px;
-        font-size: 24px;
+        font-size: 28px;
         color: var(--text-medium);
         cursor: pointer;
         transition: color 0.2s;
@@ -168,110 +166,128 @@
     .modal-close:hover { color: var(--primary-color); }
     .modal-content h3 {
         margin-top: 0;
-        color: var(--primary-color);
+        color: var(--text-light);
+        font-weight: 600;
     }
     .modal-content p, .modal-content li {
         color: var(--text-medium);
-        line-height: 1.6;
+        line-height: 1.7;
         font-size: 14px;
+        margin-bottom: 10px;
     }
+    .modal-content b { color: var(--text-light); }
 
     /* Typography & Inputs */
     .panel-title {
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 600;
-      background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #fff;
       margin: 0;
       letter-spacing: -0.5px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .panel-subtitle {
       font-size: 14px;
-      color: var(--text-medium);
-      margin-top: 5px;
+      color: var(--primary-color);
+      margin-top: 8px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
     .section-title {
-      font-size: 15px;
+      font-size: 13px;
       margin-bottom: 12px;
-      color: var(--text-light);
+      color: var(--text-medium);
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
     
     .prompt-input {
       width: 100%;
-      padding: 15px;
+      padding: 18px;
       border: 1px solid var(--border-color);
-      border-radius: 12px;
-      background: var(--background-light);
-      color: var(--text-light);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.4);
+      color: #fff;
       font-family: 'Poppins', sans-serif;
       font-size: 15px;
       resize: none;
       box-sizing: border-box;
       transition: all 0.3s;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .prompt-input::placeholder {
+      color: #777;
     }
     .prompt-input:focus {
       outline: none;
       border-color: var(--primary-color);
-      background: rgba(0, 204, 255, 0.05);
-      box-shadow: 0 0 15px rgba(0, 204, 255, 0.1);
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(0, 204, 255, 0.15), inset 0 2px 4px rgba(0,0,0,0.3);
     }
 
     /* Grids */
-    .creation-examples, .styles-grid {
+    .creation-examples, .styles-grid, .ratio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 10px;
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
-    @media (max-width: 500px) {
-      .creation-examples, .styles-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .styles-grid { grid-template-columns: repeat(3, 1fr); }
+    .ratio-grid { grid-template-columns: repeat(4, 1fr); }
+    .creation-examples { grid-template-columns: repeat(3, 1fr); }
+
+    @media (max-width: 550px) {
+      .styles-grid, .creation-examples { grid-template-columns: repeat(2, 1fr); }
+      .ratio-grid { grid-template-columns: repeat(2, 1fr); }
+      .content-container { padding: 25px; margin: 15px; }
+      .panel-title { font-size: 28px; }
     }
 
-    .style-card, .example-card {
-      padding: 12px 10px;
+    .style-card, .example-card, .ratio-card {
+      padding: 15px 10px;
       background: var(--background-medium);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 14px;
       text-align: center;
       cursor: pointer;
       color: var(--text-medium);
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 70px;
+      min-height: 55px;
     }
-    .style-card:hover, .example-card:hover {
+    .style-card { min-height: 75px; }
+    
+    .style-card:hover, .example-card:hover, .ratio-card:hover {
         background: var(--background-light);
-        transform: translateY(-3px);
-        border-color: rgba(255,255,255,0.3);
+        transform: translateY(-4px);
+        border-color: rgba(255,255,255,0.4);
+        color: #fff;
     }
-    .style-card.active {
-        background: rgba(0, 204, 255, 0.1);
+    .style-card.active, .ratio-card.active {
+        background: rgba(0, 204, 255, 0.15);
         color: var(--primary-color);
         border-color: var(--primary-color);
         transform: translateY(0);
+        box-shadow: 0 4px 15px rgba(0, 204, 255, 0.2);
     }
-    .style-card span, .example-card span {
+    .style-card span, .example-card span, .ratio-card span {
         font-weight: 600;
         font-size: 12px;
+        line-height: 1.4;
     }
 
     /* Buttons */
     .generate-btn {
       width: 100%;
-      padding: 16px;
-      background: linear-gradient(45deg, var(--button-gradient-start), var(--button-gradient-end));
+      padding: 18px;
+      background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
       border: none;
-      border-radius: 12px;
+      border-radius: 16px;
       font-size: 16px;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
@@ -280,14 +296,16 @@
       color: #fff;
       transition: all 0.3s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
     }
     .generate-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 119, 255, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 119, 255, 0.5);
     }
     .generate-btn:disabled {
-      background: var(--text-medium);
+      background: #333;
+      color: #777;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
@@ -295,26 +313,26 @@
 
     /* Results */
     .result-container {
-      margin-top: 30px;
+      margin-top: 35px;
       text-align: center;
     }
     .result-placeholder, .loading-container {
-      padding: 40px 20px;
-      border: 2px dashed var(--border-color);
-      border-radius: 16px;
-      background: transparent;
+      padding: 50px 20px;
+      border: 2px dashed rgba(255,255,255,0.15);
+      border-radius: 20px;
+      background: rgba(0,0,0,0.2);
       color: var(--text-medium);
       font-size: 14px;
     }
     
     .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255,255,255,0.1);
+      width: 45px;
+      height: 45px;
+      border: 4px solid rgba(255,255,255,0.05);
       border-left-color: var(--primary-color);
       border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 15px auto;
+      animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+      margin: 0 auto 20px auto;
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
@@ -322,42 +340,47 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
-      animation: fadeIn 0.5s ease;
+      gap: 20px;
+      animation: fadeIn 0.6s ease;
     }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
     .generated-image {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      max-width: 100%;
+      max-height: 600px;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      object-fit: contain;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     
     .download-btn {
-      padding: 12px 25px;
-      background: transparent;
-      color: var(--primary-color);
-      border: 1px solid var(--primary-color);
-      border-radius: 8px;
+      padding: 14px 30px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
     }
     .download-btn:hover {
-      background: var(--primary-color);
+      background: #fff;
       color: #000;
+      border-color: #fff;
+      transform: translateY(-2px);
     }
 
     /* Footer */
     .footer {
       text-align: center;
       font-size: 12px;
-      color: var(--text-medium);
-      margin-top: 40px;
-      border-top: 1px solid var(--border-color);
-      padding-top: 20px;
+      color: #888;
+      margin-top: 45px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 25px;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
@@ -383,26 +406,44 @@
     </div>
 
     <div class="prompt-section">
-      <textarea id="prompt" class="prompt-input" rows="3" placeholder="Descreva o que você quer ver... (Ex: Um astronauta tocando guitarra na lua)"></textarea>
+      <textarea id="prompt" class="prompt-input" rows="3" placeholder="Descreva sua visão detalhadamente..."></textarea>
     </div>
 
-    <div class="prompt-section" style="margin-top: 20px;">
-        <div class="section-title">Estilos de Imagem ✨</div>
+    <div class="prompt-section" style="margin-top: 25px;">
+        <div class="section-title">Formato da Imagem</div>
+        <div class="ratio-grid">
+            <div class="ratio-card active" data-width="1024" data-height="1024">
+                <span>1:1<br>Quadrado</span>
+            </div>
+            <div class="ratio-card" data-width="768" data-height="1024">
+                <span>3:4<br>Retrato</span>
+            </div>
+            <div class="ratio-card" data-width="576" data-height="1024">
+                <span>9:16<br>Stories / Reels</span>
+            </div>
+            <div class="ratio-card" data-width="1024" data-height="576">
+                <span>16:9<br>Paisagem (TV)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="prompt-section" style="margin-top: 15px;">
+        <div class="section-title">Estilos Cinematográficos</div>
         <div class="styles-grid">
             <div class="style-card" data-style="masterpiece, highly detailed, digital art, vibrant colors">
                 <span>Arte Digital</span>
             </div>
-            <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography">
+            <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography, macro realism">
                 <span>Fotorrealista</span>
             </div>
             <div class="style-card" data-style="watercolor painting, soft edges, artistic, brush strokes">
                 <span>Aquarela</span>
             </div>
             <div class="style-card" data-style="3d render, octane render, unreal engine 5, smooth lighting">
-                <span>3D Render</span>
+                <span>Render 3D</span>
             </div>
-            <div class="style-card" data-style="vintage comic book style, pop art, retro colors">
-                <span>HQ / Retro</span>
+            <div class="style-card" data-style="vintage film photography, kodak vision3, highly detailed">
+                <span>Película Vintage</span>
             </div>
             <div class="style-card" data-style="cyberpunk style, neon lights, futuristic, dark background">
                 <span>Cyberpunk</span>
@@ -411,35 +452,35 @@
     </div>
     
     <div class="prompt-section">
-      <div class="section-title">Inspirações</div>
+      <div class="section-title">Ideias para Começar</div>
       <div class="creation-examples">
         <div class="example-card" data-prompt="A futuristic city skyline at sunset, with flying vehicles and glowing neon signs.">
-          <span>Cidade Futuro</span>
+          <span>Metrópole Futurista</span>
         </div>
         <div class="example-card" data-prompt="A majestic lion portrait in the savanna, golden hour lighting.">
-          <span>Leão Majestoso</span>
+          <span>Retrato Selvagem</span>
         </div>
-        <div class="example-card" data-prompt="A vintage classic car parked on an old cobblestone street, detailed textures.">
-          <span>Carro Clássico</span>
+        <div class="example-card" data-prompt="A vintage classic car parked on an old cobblestone street, cinematic atmosphere.">
+          <span>Cenário Clássico</span>
         </div>
       </div>
     </div>
 
-    <button id="generateBtn" class="generate-btn" onclick="generateImage()">Criar Arte</button>
+    <button id="generateBtn" class="generate-btn" onclick="generateImage()">Criar Obra de Arte</button>
 
     <div class="result-container">
       <div id="resultPlaceholder" class="result-placeholder">
-        <div>Sua obra de arte aparecerá aqui ✨</div>
+        <div>Sua criação aparecerá aqui.</div>
       </div>
       
       <div id="loadingContainer" class="loading-container" style="display: none;">
         <div class="spinner"></div>
-        <div>A IA está pintando sua imagem...</div>
+        <div>Processando os pixels da sua imagem...</div>
       </div>
       
       <div id="imageContainer" class="image-container" style="display: none;">
         <img id="generatedImage" class="generated-image" alt="Imagem gerada por IA">
-        <button class="download-btn" onclick="downloadImage()">Baixar Imagem</button>
+        <button class="download-btn" onclick="downloadImage()">Salvar Imagem</button>
       </div>
     </div>
 
@@ -451,14 +492,14 @@
   <div class="modal-backdrop" id="info-modal">
     <div class="modal-content">
       <span class="modal-close" id="modal-close">&times;</span>
-      <h3>Como Funciona?</h3>
-      <p>Bem-vindo ao Gerador de Imagens do Plinio Studio! É 100% gratuito e não precisa de senhas.</p>
+      <h3>Instruções de Uso</h3>
+      <p>Bem-vindo ao Gerador de Imagens do Plinio Studio. Sistema 100% gratuito.</p>
       <ul>
-        <li><b>1. Descreva:</b> No campo de texto, escreva sua ideia em detalhes. (Dica: termos em inglês costumam gerar resultados mais precisos).</li>
-        <li><b>2. Estilize:</b> Clique em um dos botões de Estilo para dar o toque final (Realista, 3D, etc).</li>
-        <li><b>3. Gere:</b> Clique em "Criar Arte" e aguarde a mágica acontecer!</li>
+        <li><b>1. Prompt:</b> Digite sua ideia no campo de texto principal. Para texturas mais ricas, use termos em inglês.</li>
+        <li><b>2. Proporção:</b> Selecione o enquadramento (1:1, 9:16, etc.) ideal para seu projeto.</li>
+        <li><b>3. Estética:</b> Aplique um filtro clicando nos botões de estilo (ex: Fotorrealista).</li>
+        <li><b>4. Renderização:</b> Clique em "Criar Obra de Arte" e aguarde o processamento.</li>
       </ul>
-      <p>Para suporte ou projetos avançados, entre em contato pelo menu lateral.</p>
     </div>
   </div>
 
@@ -467,20 +508,23 @@
     const promptInput = document.getElementById('prompt');
     const generateBtn = document.getElementById('generateBtn');
     const styleCards = document.querySelectorAll('.style-card');
+    const ratioCards = document.querySelectorAll('.ratio-card');
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     const infoLink = document.getElementById('info-link');
     const infoModal = document.getElementById('info-modal');
     const modalCloseBtn = document.getElementById('modal-close');
+    
     let selectedStyle = '';
+    let selectedWidth = 1024;
+    let selectedHeight = 1024;
 
-    // UI Helpers
     const showLoading = () => {
       document.getElementById('resultPlaceholder').style.display = 'none';
       document.getElementById('imageContainer').style.display = 'none';
       document.getElementById('loadingContainer').style.display = 'block';
       generateBtn.disabled = true;
-      generateBtn.innerText = 'Gerando...';
+      generateBtn.innerText = 'Renderizando...';
     };
     
     const showImageBlock = () => {
@@ -488,7 +532,7 @@
       document.getElementById('resultPlaceholder').style.display = 'none';
       document.getElementById('imageContainer').style.display = 'flex';
       generateBtn.disabled = false;
-      generateBtn.innerText = 'Criar Nova Arte';
+      generateBtn.innerText = 'Criar Nova Obra';
     };
     
     const resetUI = () => {
@@ -496,10 +540,9 @@
       document.getElementById('imageContainer').style.display = 'none';
       document.getElementById('resultPlaceholder').style.display = 'block';
       generateBtn.disabled = false;
-      generateBtn.innerText = 'Criar Arte';
+      generateBtn.innerText = 'Criar Obra de Arte';
     };
 
-    // Event Listeners para botões
     exampleCards.forEach(card => {
       card.addEventListener('click', () => {
         promptInput.value = card.dataset.prompt;
@@ -519,47 +562,48 @@
         });
     });
 
-    // Função Principal de Geração (API Pollinations Gratuita)
+    ratioCards.forEach(card => {
+        card.addEventListener('click', () => {
+            ratioCards.forEach(r => r.classList.remove('active'));
+            card.classList.add('active');
+            selectedWidth = card.dataset.width;
+            selectedHeight = card.dataset.height;
+        });
+    });
+
     const generateImage = () => {
       let userPrompt = promptInput.value.trim();
       
       if (!userPrompt) {
-        alert('Por favor, descreva o que você quer criar antes de gerar.');
+        alert('Por favor, descreva sua visão no campo de texto antes de gerar.');
         return;
       }
 
       showLoading();
 
-      // Junta o prompt do usuário com o estilo selecionado
       let finalPrompt = userPrompt;
       if (selectedStyle) {
           finalPrompt += `, ${selectedStyle}`;
       }
 
-      // Adiciona um número aleatório (seed) para sempre gerar imagens novas mesmo com o mesmo texto
       const randomSeed = Math.floor(Math.random() * 1000000);
-      
-      // Monta a URL da API Pollinations
       const encodedPrompt = encodeURIComponent(finalPrompt);
-      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=1024&height=1024&nologo=true`;
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=${selectedWidth}&height=${selectedHeight}&nologo=true`;
 
       const imgEl = document.getElementById('generatedImage');
       
-      // Trata o carregamento da imagem gerada pela URL
       imgEl.onload = () => {
           showImageBlock();
       };
       
       imgEl.onerror = () => {
           resetUI();
-          alert('Houve um erro ao gerar a imagem. Tente alterar sua descrição.');
+          alert('Houve um erro no servidor de geração. Tente alterar ligeiramente sua descrição.');
       };
 
-      // Dispara a requisição mudando o source da imagem
       imgEl.src = imageUrl;
     };
 
-    // Download da Imagem
     const downloadImage = async () => {
       const img = document.getElementById('generatedImage');
       if (!img.src) return;
@@ -571,17 +615,16 @@
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = `arte-plinio-studio-${Date.now()}.jpg`;
+        a.download = `plinio-studio-render-${Date.now()}.jpg`;
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       } catch (error) {
-        alert('Erro ao tentar baixar a imagem diretamente. Clique com o botão direito na imagem e escolha "Salvar imagem como...".');
+        alert('Para salvar, clique com o botão direito na imagem (ou segure no celular) e escolha "Salvar imagem".');
       }
     };
 
-    // Interações de Menu e Modal
     menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       menuToggle.classList.toggle('active');
@@ -608,4 +651,5 @@
   </script>
 </body>
 </html>
+
 
