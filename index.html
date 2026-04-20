@@ -8,8 +8,8 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
     :root {
-      --primary-color: #00CCFF; /* Azul claro vibrante */
-      --background-dark: #121212; /* Grafite Profundo Base */
+      --primary-color: #00CCFF; 
+      --background-dark: #121212; 
       --card-background: rgba(30, 30, 30, 0.7);
       --card-selected-background: rgba(0, 204, 255, 0.15);
       --text-light: #F0F0F0;
@@ -23,7 +23,6 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      /* Fundo Grafite Profundo com Sutil Matiz Roxo Escuro */
       background: radial-gradient(circle at top, #1a1a2e, #0d0d1a) fixed;
       color: var(--text-light);
       display: flex;
@@ -47,7 +46,7 @@
       position: relative;
     }
 
-    /* Menu Toggle - Posicionamento Limpo */
+    /* Menu Toggle Corrigido */
     .menu-toggle {
       position: absolute;
       top: 25px;
@@ -58,27 +57,27 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      z-index: 1000;
+      z-index: 1001; /* Z-index alto para não sumir */
     }
     .menu-toggle span {
       display: block;
       width: 100%;
-      height: 2px;
-      background: var(--text-light);
-      border-radius: 2px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 3px;
       transition: all 0.3s ease;
     }
     .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+      transform: rotate(45deg) translate(6px, 6px);
     }
     .menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
     .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
+      transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    /* Sidebar */
+    /* Sidebar Atualizada */
     .sidebar {
       position: fixed;
       top: 0;
@@ -90,7 +89,7 @@
       box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
       transform: translateX(-100%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 999;
+      z-index: 1000;
       padding-top: 100px;
       border-right: 1px solid var(--border-color);
     }
@@ -108,7 +107,7 @@
       color: var(--text-light);
       text-decoration: none;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 600;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       transition: all 0.2s;
     }
@@ -118,7 +117,7 @@
       padding-left: 40px;
     }
 
-    /* Modal */
+    /* Modais Genéricos */
     .modal-backdrop {
         position: fixed;
         top: 0;
@@ -129,7 +128,7 @@
         display: none;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        z-index: 1005;
         backdrop-filter: blur(10px);
     }
     .modal-content {
@@ -137,10 +136,13 @@
         padding: 35px;
         border-radius: 24px;
         max-width: 450px;
+        width: 90%;
         text-align: left;
         position: relative;
         border: 1px solid var(--border-color);
         box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+        max-height: 80vh;
+        overflow-y: auto;
     }
     .modal-close {
         position: absolute;
@@ -154,7 +156,7 @@
     .modal-close:hover { color: var(--primary-color); }
     .modal-content h3 {
         margin-top: 0;
-        color: var(--text-light);
+        color: var(--primary-color);
         font-weight: 600;
     }
     .modal-content p, .modal-content li {
@@ -163,9 +165,8 @@
         font-size: 14px;
         margin-bottom: 12px;
     }
-    .modal-content b { color: var(--text-light); }
 
-    /* Header e Título */
+    /* Header */
     .header {
       text-align: center;
       margin-top: 60px;
@@ -188,10 +189,8 @@
       text-transform: uppercase;
     }
 
-    /* Seções e Títulos */
-    .prompt-section {
-        margin-bottom: 25px;
-    }
+    /* Input */
+    .prompt-section { margin-bottom: 25px; }
     .section-title {
       font-size: 12px;
       margin-bottom: 12px;
@@ -200,7 +199,6 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
     }
-    
     .prompt-input {
       width: 100%;
       padding: 18px;
@@ -214,9 +212,6 @@
       box-sizing: border-box;
       transition: all 0.3s;
       box-shadow: inset 0 3px 6px rgba(0,0,0,0.4);
-    }
-    .prompt-input::placeholder {
-      color: #666;
     }
     .prompt-input:focus {
       outline: none;
@@ -252,7 +247,7 @@
       text-align: center;
       cursor: pointer;
       color: var(--text-medium);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -260,8 +255,14 @@
       min-height: 55px;
       position: relative;
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent; /* Remove sombra azul nativa do celular */
     }
     
+    /* Previne que o clique falhe pegando nos elementos internos */
+    .style-card *, .example-card *, .ratio-card * {
+        pointer-events: none;
+    }
+
     .card-img-wrapper {
         width: 100%;
         height: 80px;
@@ -269,7 +270,7 @@
         border-radius: 10px;
         overflow: hidden;
         border: 1px solid rgba(255,255,255,0.05);
-        background: #222; /* Fundo escuro enquanto carrega */
+        background: #222; 
     }
     .card-img {
         width: 100%;
@@ -279,7 +280,6 @@
 
     .style-card:hover, .example-card:hover, .ratio-card:hover {
         background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-5px);
         border-color: rgba(255,255,255,0.4);
         color: #fff;
     }
@@ -287,8 +287,7 @@
         background: var(--card-selected-background);
         color: var(--primary-color);
         border-color: var(--primary-color);
-        transform: translateY(0);
-        box-shadow: 0 6px 20px rgba(0, 204, 255, 0.3);
+        box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
     }
     .style-card span, .example-card span, .ratio-card span {
         font-weight: 600;
@@ -296,7 +295,7 @@
         line-height: 1.4;
     }
 
-    /* Botões */
+    /* Botão Gerar */
     .generate-btn {
       width: 100%;
       padding: 18px;
@@ -314,15 +313,13 @@
       letter-spacing: 1.8px;
       box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
     }
-    .generate-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 119, 255, 0.6);
+    .generate-btn:active {
+      transform: scale(0.98);
     }
     .generate-btn:disabled {
       background: #2a2a2a;
       color: #666;
       cursor: not-allowed;
-      transform: none;
       box-shadow: none;
     }
 
@@ -380,23 +377,6 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    .download-btn:hover {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-      transform: translateY(-2px);
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      font-size: 11px;
-      color: #666;
-      margin-top: 45px;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 25px;
-      letter-spacing: 0.8px;
-    }
   </style>
 </head>
 <body>
@@ -409,8 +389,8 @@
 
   <div class="sidebar" id="sidebar">
     <ul>
-      <li><a href="#" id="info-link">Como Funciona</a></li>
-      <li><a href="https://wa.me/5587999786261" target="_blank">Suporte Técnico</a></li>
+      <li><a href="#" id="prompt-link">O que é um Prompt?</a></li>
+      <li><a href="https://wa.me/5587996029762" target="_blank">Adquira sua senha</a></li>
     </ul>
   </div>
 
@@ -504,26 +484,21 @@
       
       <div id="imageContainer" class="image-container" style="display: none;">
         <img id="generatedImage" class="generated-image" alt="Imagem gerada por IA">
+        <br><br>
         <button class="download-btn" onclick="downloadImage()">Salvar Imagem</button>
       </div>
     </div>
-
-    <div class="footer">
-      <p>&copy; 2026 • Desenvolvido por Plinio Studio</p>
-    </div>
   </div>
 
-  <div class="modal-backdrop" id="info-modal">
+  <div class="modal-backdrop" id="prompt-modal">
     <div class="modal-content">
-      <span class="modal-close" id="modal-close">&times;</span>
-      <h3>Instruções de Uso</h3>
-      <p>Bem-vindo ao Gerador de Imagens do Plinio Studio. Sistema 100% gratuito.</p>
-      <ul>
-        <li><b>1. Prompt:</b> Digite sua ideia no campo de texto principal. Tente descrever o máximo de detalhes possível.</li>
-        <li><b>2. Proporção:</b> Selecione o enquadramento (1:1, 9:16, etc.) ideal para seu projeto.</li>
-        <li><b>3. Estética:</b> Aplique um filtro cinematográfico clicando nos botões de estilo para dar o toque final.</li>
-        <li><b>4. Renderização:</b> Clique em "Criar Obra de Arte" e aguarde o processamento terminar.</li>
-      </ul>
+      <span class="modal-close" id="modal-close-prompt">&times;</span>
+      <h3>O que é um Prompt?</h3>
+      <div id="prompt-text-container">
+        <p>Um <b>Prompt</b> é o comando ou descrição em texto que você dá para a Inteligência Artificial criar uma imagem.</p>
+        <p>Quanto mais detalhes você fornecer sobre o cenário, a iluminação, os personagens e o estilo, mais precisa e impressionante será a sua imagem final.</p>
+        <p><i>(Aguardando o texto completo do Comandante para atualizar aqui...)</i></p>
+      </div>
     </div>
   </div>
 
@@ -535,9 +510,11 @@
     const ratioCards = document.querySelectorAll('.ratio-card');
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
-    const infoLink = document.getElementById('info-link');
-    const infoModal = document.getElementById('info-modal');
-    const modalCloseBtn = document.getElementById('modal-close');
+    
+    // Elementos do Modal do Menu
+    const promptLink = document.getElementById('prompt-link');
+    const promptModal = document.getElementById('prompt-modal');
+    const modalClosePrompt = document.getElementById('modal-close-prompt');
     
     let selectedStyle = '';
     let selectedWidth = 1024;
@@ -567,10 +544,9 @@
       generateBtn.innerText = 'Criar Obra de Arte';
     };
 
+    // Funcionalidade de cliques nos Cards de Formato e Estilo
     exampleCards.forEach(card => {
-      card.addEventListener('click', () => {
-        promptInput.value = card.dataset.prompt;
-      });
+      card.addEventListener('click', () => promptInput.value = card.dataset.prompt);
     });
 
     styleCards.forEach(card => {
@@ -580,7 +556,102 @@
                 selectedStyle = '';
             } else {
                 styleCards.forEach(s => s.classList.remove('active'));
-                card.classList.add
+                card.classList.add('active');
+                selectedStyle = card.dataset.style;
+            }
+        });
+    });
+
+    ratioCards.forEach(card => {
+        card.addEventListener('click', () => {
+            ratioCards.forEach(r => r.classList.remove('active'));
+            card.classList.add('active');
+            selectedWidth = card.dataset.width;
+            selectedHeight = card.dataset.height;
+        });
+    });
+
+    // Motor de Geração de Imagem Blindado
+    const generateImage = () => {
+      let userPrompt = promptInput.value.trim();
+      if (!userPrompt) {
+        alert('Por favor, descreva sua visão no campo de texto antes de gerar.');
+        return;
+      }
+
+      showLoading();
+
+      let finalPrompt = userPrompt;
+      if (selectedStyle) finalPrompt += `, ${selectedStyle}`;
+
+      const randomSeed = Math.floor(Math.random() * 1000000);
+      const encodedPrompt = encodeURIComponent(finalPrompt);
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=${selectedWidth}&height=${selectedHeight}&nologo=true`;
+
+      // Pré-carregamento em Background (Evita falhas do navegador)
+      const tempImg = new Image();
+      tempImg.onload = () => {
+          document.getElementById('generatedImage').src = tempImg.src;
+          showImageBlock();
+      };
+      tempImg.onerror = () => {
+          resetUI();
+          alert('Houve uma falha de conexão na geração. Tente novamente em alguns segundos.');
+      };
+      tempImg.src = imageUrl;
+    };
+
+    const downloadImage = async () => {
+      const img = document.getElementById('generatedImage');
+      if (!img.src) return;
+      try {
+        const response = await fetch(img.src);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `plinio-studio-${Date.now()}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        alert('Para salvar, segure o dedo em cima da imagem gerada e escolha "Fazer download da imagem".');
+      }
+    };
+
+    // Funcionalidade do Menu Isolada (Impede conflitos de clique)
+    menuToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      sidebar.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (sidebar.classList.contains('open') && !sidebar.contains(event.target)) {
+        sidebar.classList.remove('open');
+        menuToggle.classList.remove('active');
+      }
+    });
+
+    // Funcionalidade do Modal "O que é um Prompt?"
+    promptLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      sidebar.classList.remove('open'); // Fecha o menu
+      menuToggle.classList.remove('active');
+      promptModal.style.display = 'flex'; // Abre o modal
+    });
+
+    modalClosePrompt.addEventListener('click', () => promptModal.style.display = 'none');
+    
+    promptModal.addEventListener('click', (e) => {
+      if (e.target === promptModal) promptModal.style.display = 'none';
+    });
+
+  </script>
+</body>
+</html>
+
 
 
 
