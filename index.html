@@ -46,7 +46,7 @@
       position: relative;
     }
 
-    /* Menu Toggle Corrigido */
+    /* Menu Toggle */
     .menu-toggle {
       position: absolute;
       top: 25px;
@@ -57,7 +57,7 @@
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
-      z-index: 1001; /* Z-index alto para não sumir */
+      z-index: 1001; 
     }
     .menu-toggle span {
       display: block;
@@ -77,7 +77,7 @@
       transform: rotate(-45deg) translate(6px, -6px);
     }
 
-    /* Sidebar Atualizada */
+    /* Sidebar */
     .sidebar {
       position: fixed;
       top: 0;
@@ -135,13 +135,13 @@
         background: #141414;
         padding: 35px;
         border-radius: 24px;
-        max-width: 450px;
+        max-width: 500px; /* Um pouco mais largo para o texto da aula */
         width: 90%;
         text-align: left;
         position: relative;
         border: 1px solid var(--border-color);
         box-shadow: 0 25px 50px rgba(0,0,0,0.9);
-        max-height: 80vh;
+        max-height: 85vh; /* Rolagem em telas pequenas */
         overflow-y: auto;
     }
     .modal-close {
@@ -152,18 +152,43 @@
         color: var(--text-medium);
         cursor: pointer;
         transition: color 0.2s;
+        z-index: 10;
     }
     .modal-close:hover { color: var(--primary-color); }
     .modal-content h3 {
         margin-top: 0;
         color: var(--primary-color);
         font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
-    .modal-content p, .modal-content li {
+    
+    /* Estilização da Aula no Modal */
+    .prompt-lesson p {
         color: var(--text-medium);
         line-height: 1.7;
         font-size: 14px;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
+    }
+    .prompt-lesson ul {
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+    .prompt-lesson li {
+        color: var(--text-medium);
+        line-height: 1.7;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .prompt-lesson strong {
+        color: var(--text-light);
+    }
+    .prompt-lesson .signature {
+        text-align: right;
+        margin-top: 25px;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 14px;
     }
 
     /* Header */
@@ -255,10 +280,9 @@
       min-height: 55px;
       position: relative;
       overflow: hidden;
-      -webkit-tap-highlight-color: transparent; /* Remove sombra azul nativa do celular */
+      -webkit-tap-highlight-color: transparent; 
     }
     
-    /* Previne que o clique falhe pegando nos elementos internos */
     .style-card *, .example-card *, .ratio-card * {
         pointer-events: none;
     }
@@ -357,12 +381,16 @@
     }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* CSS CORRIGIDO PARA NÃO ESTICAR IMAGENS 9:16 */
     .generated-image {
+      width: auto;
       max-width: 100%;
-      max-height: 600px;
-      border-radius: 20px;
+      height: auto;
+      max-height: 70vh; /* Mantém a imagem dentro da tela do celular sem esticar */
+      border-radius: 16px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      object-fit: contain;
+      object-fit: contain; /* REGRA DE OURO: Nunca estica, apenas ajusta proporção real */
+      display: block;
       border: 1px solid rgba(255,255,255,0.08);
     }
     
@@ -376,6 +404,11 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s;
+    }
+    .download-btn:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
     }
   </style>
 </head>
@@ -401,7 +434,7 @@
     </div>
 
     <div class="prompt-section">
-      <textarea id="prompt" class="prompt-input" rows="3" placeholder="Descreva sua visão detalhadamente..."></textarea>
+      <textarea id="prompt" class="prompt-input" rows="3" placeholder="Ex: Foto profissional para perfil corporativo no LinkedIn..."></textarea>
     </div>
 
     <div class="prompt-section">
@@ -429,7 +462,7 @@
                 <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" class="card-img" alt="Arte Digital"></div>
                 <span>Arte Digital</span>
             </div>
-            <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography, macro realism, shot on kodak film">
+            <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography, macro realism, professional portrait">
                 <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80" class="card-img" alt="Fotorrealista"></div>
                 <span>Fotorrealista</span>
             </div>
@@ -463,9 +496,9 @@
           <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&q=80" class="card-img" alt="Leão"></div>
           <span>Retrato Selvagem</span>
         </div>
-        <div class="example-card" data-prompt="A vintage classic car parked on an old cobblestone street, cinematic atmosphere, altamente detalhada">
-          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80" class="card-img" alt="Carro"></div>
-          <span>Cenário Clássico</span>
+        <div class="example-card" data-prompt="Retrato formal com fundo neutro e expressão confiante, iluminação uniforme de estúdio para realçar detalhes do rosto">
+          <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" class="card-img" alt="Corporativo"></div>
+          <span>Perfil Corporativo</span>
         </div>
       </div>
     </div>
@@ -494,10 +527,20 @@
     <div class="modal-content">
       <span class="modal-close" id="modal-close-prompt">&times;</span>
       <h3>O que é um Prompt?</h3>
-      <div id="prompt-text-container">
-        <p>Um <b>Prompt</b> é o comando ou descrição em texto que você dá para a Inteligência Artificial criar uma imagem.</p>
-        <p>Quanto mais detalhes você fornecer sobre o cenário, a iluminação, os personagens e o estilo, mais precisa e impressionante será a sua imagem final.</p>
-        <p><i>(Aguardando o texto completo do Comandante para atualizar aqui...)</i></p>
+      <div class="prompt-lesson">
+        <p><strong>O prompt</strong> é o ponto de partida para gerar imagens realistas e de qualidade com inteligência artificial. O segredo está nos detalhes. A IA precisa de instruções específicas para entender o que o usuário quer e evitar resultados genéricos.</p>
+        <p>Por isso, quanto mais completa e objetiva for a descrição, mais fiel será a imagem produzida. Em vez de termos técnicos ou adjetivos vagos, o ideal é usar frases curtas, diretas e que descrevam com clareza o objetivo, como <em>“foto profissional para perfil corporativo no LinkedIn”</em> ou <em>“retrato formal com fundo neutro e expressão confiante”</em>.</p>
+        <p>Na criação de fotos profissionais, o prompt deve seguir quatro critérios principais:</p>
+        <ul>
+            <li><strong>Ação ou assunto:</strong> define exatamente o que está acontecendo na imagem ou quem está sendo retratado. Pode incluir gênero, idade, postura e a atividade retratada. Exemplo: <em>“homem sentado à mesa de reunião, sorrindo levemente, com postura ereta”</em>.</li>
+            <li><strong>Iluminação:</strong> especifica o tipo de luz e o efeito desejado na imagem. O usuário pode indicar intensidade, direção e clima, como <em>“luz natural suave vindo da lateral, criando sombras sutis no rosto”</em> ou <em>“iluminação uniforme de estúdio para realçar detalhes do rosto”</em>.</li>
+            <li><strong>Fundo ou cenário:</strong> determina o ambiente em que a pessoa está inserida, influenciando a percepção profissional. Pode ser neutro, como <em>“fundo branco ou cinza”</em>, ou contextual, citando um <em>“escritório moderno com livros e computador ao fundo”</em>. Além disso, o usuário também pode incluir efeito de profundidade, como desfoque.</li>
+            <li><strong>Expressão ou detalhe:</strong> foca nas características faciais, posturas e pequenos elementos que transmitem profissionalismo e naturalidade.</li>
+        </ul>
+        <p><strong>Exemplo Prático:</strong> “Olhar confiante, sorriso discreto, roupa social bem ajustada, cabelo arrumado e mãos visíveis sobre a mesa”.</p>
+        <div class="signature">
+            Mentor: Plínio Fabrício
+        </div>
       </div>
     </div>
   </div>
@@ -511,7 +554,6 @@
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
     
-    // Elementos do Modal do Menu
     const promptLink = document.getElementById('prompt-link');
     const promptModal = document.getElementById('prompt-modal');
     const modalClosePrompt = document.getElementById('modal-close-prompt');
@@ -519,6 +561,7 @@
     let selectedStyle = '';
     let selectedWidth = 1024;
     let selectedHeight = 1024;
+    let retryCount = 0; // Sistema de auto-recuperação
 
     const showLoading = () => {
       document.getElementById('resultPlaceholder').style.display = 'none';
@@ -544,7 +587,6 @@
       generateBtn.innerText = 'Criar Obra de Arte';
     };
 
-    // Funcionalidade de cliques nos Cards de Formato e Estilo
     exampleCards.forEach(card => {
       card.addEventListener('click', () => promptInput.value = card.dataset.prompt);
     });
@@ -571,7 +613,7 @@
         });
     });
 
-    // Motor de Geração de Imagem Blindado
+    // Motor de Geração com Auto-Retry (Anti-Falhas)
     const generateImage = () => {
       let userPrompt = promptInput.value.trim();
       if (!userPrompt) {
@@ -584,21 +626,35 @@
       let finalPrompt = userPrompt;
       if (selectedStyle) finalPrompt += `, ${selectedStyle}`;
 
-      const randomSeed = Math.floor(Math.random() * 1000000);
+      // A seed muda sempre, garantindo imagens novas e burlando o cache
+      const randomSeed = Math.floor(Math.random() * 10000000);
       const encodedPrompt = encodeURIComponent(finalPrompt);
-      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=${selectedWidth}&height=${selectedHeight}&nologo=true`;
+      
+      // URL direta e limpa para a API (com enhance para melhorar a qualidade baseada no seu texto)
+      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${selectedWidth}&height=${selectedHeight}&seed=${randomSeed}&nologo=true&enhance=true`;
 
-      // Pré-carregamento em Background (Evita falhas do navegador)
-      const tempImg = new Image();
-      tempImg.onload = () => {
-          document.getElementById('generatedImage').src = tempImg.src;
+      const imgEl = document.getElementById('generatedImage');
+      
+      imgEl.onload = () => {
+          retryCount = 0; // Sucesso, zera os erros
           showImageBlock();
       };
-      tempImg.onerror = () => {
-          resetUI();
-          alert('Houve uma falha de conexão na geração. Tente novamente em alguns segundos.');
+      
+      imgEl.onerror = () => {
+          if(retryCount < 1) { 
+              // Se falhar a primeira vez, o sistema tenta de novo silenciosamente
+              retryCount++;
+              generateImage(); 
+          } else {
+              // Se falhar duas vezes seguidas, avisa o usuário de forma clara
+              resetUI();
+              retryCount = 0;
+              alert('Os servidores da Inteligência Artificial estão sobrecarregados no momento. Por favor, aguarde alguns segundos e tente gerar novamente.');
+          }
       };
-      tempImg.src = imageUrl;
+
+      // Dispara a requisição
+      imgEl.src = imageUrl;
     };
 
     const downloadImage = async () => {
@@ -616,11 +672,10 @@
         a.click();
         window.URL.revokeObjectURL(url);
       } catch (error) {
-        alert('Para salvar, segure o dedo em cima da imagem gerada e escolha "Fazer download da imagem".');
+        alert('Para salvar, segure o dedo em cima da imagem gerada e escolha "Fazer download da imagem" ou "Salvar em Fotos".');
       }
     };
 
-    // Funcionalidade do Menu Isolada (Impede conflitos de clique)
     menuToggle.addEventListener('click', (event) => {
       event.stopPropagation();
       sidebar.classList.toggle('open');
@@ -634,12 +689,11 @@
       }
     });
 
-    // Funcionalidade do Modal "O que é um Prompt?"
     promptLink.addEventListener('click', (event) => {
       event.preventDefault();
-      sidebar.classList.remove('open'); // Fecha o menu
+      sidebar.classList.remove('open'); 
       menuToggle.classList.remove('active');
-      promptModal.style.display = 'flex'; // Abre o modal
+      promptModal.style.display = 'flex'; 
     });
 
     modalClosePrompt.addEventListener('click', () => promptModal.style.display = 'none');
@@ -651,6 +705,7 @@
   </script>
 </body>
 </html>
+
 
 
 
