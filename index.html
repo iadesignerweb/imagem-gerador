@@ -446,7 +446,7 @@
         <div class="section-title">Estilos Cinematográficos</div>
         <div class="styles-grid">
             <div class="style-card" data-style="masterpiece, highly detailed, digital art, vibrant colors, cyberpunk aesthetic">
-                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?w=400&q=80" class="card-img" alt="Arte Digital"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&q=80" class="card-img" alt="Arte Digital"></div>
                 <span>Arte Digital</span>
             </div>
             <div class="style-card" data-style="hyper-realistic, 8k resolution, cinematic lighting, photography, macro realism, shot on kodak film">
@@ -462,7 +462,7 @@
                 <span>Render 3D</span>
             </div>
             <div class="style-card" data-style="vintage film photography, highly detailed, kodak vision3, fine grain, shot on 35mm film">
-                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1534604973900-c43aa417faba?w=400&q=80" class="card-img" alt="Película Vintage"></div>
+                <div class="card-img-wrapper"><img src="https://images.unsplash.com/photo-1495106245177-55dc6f43e83f?w=400&q=80" class="card-img" alt="Película Vintage"></div>
                 <span>Película Vintage</span>
             </div>
             <div class="style-card" data-style="dreamy fantasy art, magical realism, glowing lights, intricate details, mythical creatures">
@@ -580,101 +580,8 @@
                 selectedStyle = '';
             } else {
                 styleCards.forEach(s => s.classList.remove('active'));
-                card.classList.add('active');
-                selectedStyle = card.dataset.style;
-            }
-        });
-    });
+                card.classList.add
 
-    ratioCards.forEach(card => {
-        card.addEventListener('click', () => {
-            ratioCards.forEach(r => r.classList.remove('active'));
-            card.classList.add('active');
-            selectedWidth = card.dataset.width;
-            selectedHeight = card.dataset.height;
-        });
-    });
-
-    const generateImage = () => {
-      let userPrompt = promptInput.value.trim();
-      
-      if (!userPrompt) {
-        alert('Por favor, descreva sua visão no campo de texto antes de gerar.');
-        return;
-      }
-
-      showLoading();
-
-      let finalPrompt = userPrompt;
-      if (selectedStyle) {
-          finalPrompt += `, ${selectedStyle}`;
-      }
-
-      const randomSeed = Math.floor(Math.random() * 1000000);
-      const encodedPrompt = encodeURIComponent(finalPrompt);
-      const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?seed=${randomSeed}&width=${selectedWidth}&height=${selectedHeight}&nologo=true`;
-
-      const imgEl = document.getElementById('generatedImage');
-      
-      imgEl.onload = () => {
-          showImageBlock();
-      };
-      
-      imgEl.onerror = () => {
-          resetUI();
-          alert('Houve um erro no servidor de geração. Tente alterar ligeiramente sua descrição.');
-      };
-
-      imgEl.src = imageUrl;
-    };
-
-    const downloadImage = async () => {
-      const img = document.getElementById('generatedImage');
-      if (!img.src) return;
-      
-      try {
-        const response = await fetch(img.src);
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = `plinio-studio-render-${Date.now()}.jpg`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-      } catch (error) {
-        alert('Para salvar, clique com o botão direito na imagem (ou segure no celular) e escolha "Salvar imagem".');
-      }
-    };
-
-    menuToggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      menuToggle.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-        menuToggle.classList.remove('active');
-      }
-    });
-
-    infoLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      infoModal.style.display = 'flex';
-      sidebar.classList.remove('open');
-      menuToggle.classList.remove('active');
-    });
-
-    modalCloseBtn.addEventListener('click', () => infoModal.style.display = 'none');
-    infoModal.addEventListener('click', (e) => {
-      if (e.target === infoModal) infoModal.style.display = 'none';
-    });
-  </script>
-</body>
-</html>
 
 
 
