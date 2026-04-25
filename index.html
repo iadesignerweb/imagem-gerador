@@ -2,28 +2,31 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerador de Imagens | Plinio Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gerador de Imagens | Plínio Studio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
     :root {
-      --primary-color: #00CCFF; 
+      /* PALETA DE CORES - VERDE NEON DO HUB */
+      --primary-color: #00ffb3; 
+      --primary-dark: #00cc8e;
       --background-dark: #121212; 
       --card-background: rgba(30, 30, 30, 0.7);
-      --card-selected-background: rgba(0, 204, 255, 0.15);
+      --card-selected-background: rgba(0, 255, 179, 0.15);
       --text-light: #F0F0F0;
       --text-medium: #CCCCCC;
       --border-color: rgba(255, 255, 255, 0.15);
-      --button-gradient-start: #00CCFF;
-      --button-gradient-end: #0077FF;
+      --button-gradient-start: #00ffb3;
+      --button-gradient-end: #00cc8e;
     }
 
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #1a1a2e, #0d0d1a) fixed;
+      /* Degradê sofisticado sem azul */
+      background: radial-gradient(circle at top, #1e1e21, #0d0d1a) fixed;
       color: var(--text-light);
       display: flex;
       justify-content: center;
@@ -67,15 +70,9 @@
       border-radius: 3px;
       transition: all 0.3s ease;
     }
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
+    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
     /* Sidebar */
     .sidebar {
@@ -84,7 +81,7 @@
       left: 0;
       width: 280px;
       height: 100%;
-      background: rgba(10, 10, 15, 0.98);
+      background: rgba(10, 10, 12, 0.98); 
       backdrop-filter: blur(15px);
       box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
       transform: translateX(-100%);
@@ -93,14 +90,8 @@
       padding-top: 100px;
       border-right: 1px solid var(--border-color);
     }
-    .sidebar.open {
-      transform: translateX(0);
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar ul { list-style: none; padding: 0; margin: 0; }
     .sidebar li a {
       display: block;
       padding: 18px 35px;
@@ -120,137 +111,48 @@
     /* Modais Genéricos */
     .modal-backdrop {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0, 0, 0, 0.88);
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 1005;
-        backdrop-filter: blur(10px);
+        display: none; justify-content: center; align-items: center;
+        z-index: 1005; backdrop-filter: blur(10px);
     }
     .modal-content {
-        background: #141414;
-        padding: 35px;
-        border-radius: 24px;
-        max-width: 500px; /* Um pouco mais largo para o texto da aula */
-        width: 90%;
-        text-align: left;
-        position: relative;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.9);
-        max-height: 85vh; /* Rolagem em telas pequenas */
-        overflow-y: auto;
+        background: rgba(240, 240, 240, 0.8);
+        padding: 35px; border-radius: 24px;
+        max-width: 500px; width: 90%; text-align: left;
+        position: relative; border: 2px solid var(--primary-color);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.9); max-height: 85vh; overflow-y: auto;
     }
     .modal-close {
-        position: absolute;
-        top: 18px;
-        right: 22px;
-        font-size: 30px;
-        color: var(--text-medium);
-        cursor: pointer;
-        transition: color 0.2s;
-        z-index: 10;
+        position: absolute; top: 18px; right: 22px;
+        font-size: 30px; color: #666; cursor: pointer; transition: color 0.2s; z-index: 10;
     }
     .modal-close:hover { color: var(--primary-color); }
     .modal-content h3 {
-        margin-top: 0;
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 24px;
-        margin-bottom: 20px;
+        margin-top: 0; color: #222; font-weight: 600; font-size: 24px; margin-bottom: 20px;
     }
-    
-    /* Estilização da Aula no Modal */
-    .prompt-lesson p {
-        color: var(--text-medium);
-        line-height: 1.7;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-    .prompt-lesson ul {
-        padding-left: 20px;
-        margin-bottom: 15px;
-    }
-    .prompt-lesson li {
-        color: var(--text-medium);
-        line-height: 1.7;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .prompt-lesson strong {
-        color: var(--text-light);
-    }
-    .prompt-lesson .signature {
-        text-align: right;
-        margin-top: 25px;
-        color: var(--primary-color);
-        font-weight: 600;
-        font-size: 14px;
-    }
+    .prompt-lesson p, .prompt-lesson li { color: #444; line-height: 1.7; font-size: 14px; margin-bottom: 15px; }
+    .prompt-lesson ul { padding-left: 20px; margin-bottom: 15px; }
+    .prompt-lesson strong { color: #111; }
+    .prompt-lesson .signature { text-align: right; margin-top: 25px; color: var(--primary-dark); font-weight: 600; font-size: 14px; }
 
     /* Header */
-    .header {
-      text-align: center;
-      margin-top: 60px;
-      margin-bottom: 30px;
-    }
-    .panel-title {
-      font-size: 32px;
-      font-weight: 600;
-      color: #fff;
-      margin: 0;
-      letter-spacing: -0.5px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-    }
-    .panel-subtitle {
-      font-size: 13px;
-      color: var(--primary-color);
-      margin-top: 10px;
-      font-weight: 400;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
+    .header { text-align: center; margin-top: 60px; margin-bottom: 30px; }
+    .panel-title { font-size: 32px; font-weight: 600; color: #fff; margin: 0; letter-spacing: -0.5px; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+    .panel-subtitle { font-size: 13px; color: var(--primary-color); margin-top: 10px; font-weight: 400; letter-spacing: 1.2px; text-transform: uppercase; }
 
     /* Input */
     .prompt-section { margin-bottom: 25px; }
-    .section-title {
-      font-size: 12px;
-      margin-bottom: 12px;
-      color: var(--text-medium);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
+    .section-title { font-size: 12px; margin-bottom: 12px; color: var(--text-medium); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
     .prompt-input {
-      width: 100%;
-      padding: 18px;
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 15px;
-      resize: none;
-      box-sizing: border-box;
-      transition: all 0.3s;
-      box-shadow: inset 0 3px 6px rgba(0,0,0,0.4);
+      width: 100%; padding: 18px; border: 1px solid var(--border-color); border-radius: 18px;
+      background: rgba(0, 0, 0, 0.4); color: #fff; font-family: 'Poppins', sans-serif; font-size: 15px;
+      resize: none; box-sizing: border-box; transition: all 0.3s; box-shadow: inset 0 3px 6px rgba(0,0,0,0.4);
     }
-    .prompt-input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 20px rgba(0, 204, 255, 0.2), inset 0 3px 6px rgba(0,0,0,0.4);
-    }
+    .prompt-input:focus { outline: none; border-color: var(--primary-color); background: rgba(0, 0, 0, 0.6); box-shadow: 0 0 20px rgba(0, 255, 179, 0.2), inset 0 3px 6px rgba(0,0,0,0.4); }
 
     /* Grids e Cartões */
-    .creation-examples, .styles-grid, .ratio-grid {
-      display: grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .creation-examples, .styles-grid, .ratio-grid { display: grid; gap: 12px; margin-top: 10px; }
     .ratio-grid { grid-template-columns: repeat(4, 1fr); }
     .styles-grid { grid-template-columns: repeat(3, 1fr); }
     .creation-examples { grid-template-columns: repeat(3, 1fr); }
@@ -261,163 +163,58 @@
       .content-container { padding: 20px; margin: 10px; border-radius: 24px;}
       .header { margin-top: 50px; }
       .panel-title { font-size: 28px; }
-      .card-img-wrapper { height: 70px; }
     }
 
     .style-card, .example-card, .ratio-card {
-      padding: 15px 10px;
-      background: var(--card-background);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      text-align: center;
-      cursor: pointer;
-      color: var(--text-medium);
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 55px;
-      position: relative;
-      overflow: hidden;
-      -webkit-tap-highlight-color: transparent; 
+      padding: 15px 10px; background: var(--card-background); border: 1px solid var(--border-color);
+      border-radius: 16px; text-align: center; cursor: pointer; color: var(--text-medium);
+      transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-height: 55px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; 
     }
-    
-    .style-card *, .example-card *, .ratio-card * {
-        pointer-events: none;
-    }
-
-    .card-img-wrapper {
-        width: 100%;
-        height: 80px;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.05);
-        background: #222; 
-    }
-    .card-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .style-card:hover, .example-card:hover, .ratio-card:hover {
-        background: rgba(255, 255, 255, 0.05);
-        border-color: rgba(255,255,255,0.4);
-        color: #fff;
-    }
-    .style-card.active, .ratio-card.active {
-        background: var(--card-selected-background);
-        color: var(--primary-color);
-        border-color: var(--primary-color);
-        box-shadow: 0 0 15px rgba(0, 204, 255, 0.2);
-    }
-    .style-card span, .example-card span, .ratio-card span {
-        font-weight: 600;
-        font-size: 11px;
-        line-height: 1.4;
-    }
+    .style-card *, .example-card *, .ratio-card * { pointer-events: none; }
+    .card-img-wrapper { width: 100%; height: 80px; margin-bottom: 10px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); background: #222; }
+    .card-img { width: 100%; height: 100%; object-fit: cover; }
+    .style-card:hover, .example-card:hover, .ratio-card:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255,255,255,0.4); color: #fff; }
+    .style-card.active, .ratio-card.active { background: var(--card-selected-background); color: var(--primary-color); border-color: var(--primary-color); box-shadow: 0 0 15px rgba(0, 255, 179, 0.2); }
+    .style-card span, .example-card span, .ratio-card span { font-weight: 600; font-size: 11px; line-height: 1.4; }
 
     /* Botão Gerar */
     .generate-btn {
-      width: 100%;
-      padding: 18px;
-      background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
-      border: none;
-      border-radius: 18px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 15px;
-      color: #fff;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+      width: 100%; padding: 18px; background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
+      border: none; border-radius: 18px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;
+      cursor: pointer; margin-top: 15px; color: #0d0d1a; transition: all 0.3s ease; text-transform: uppercase;
+      letter-spacing: 1.8px; box-shadow: 0 6px 20px rgba(0, 255, 179, 0.4);
     }
-    .generate-btn:active {
-      transform: scale(0.98);
-    }
-    .generate-btn:disabled {
-      background: #2a2a2a;
-      color: #666;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
+    .generate-btn:active { transform: scale(0.98); }
+    .generate-btn:disabled { background: #2a2a2a; color: #666; cursor: not-allowed; box-shadow: none; }
 
     /* Resultados */
-    .result-container {
-      margin-top: 35px;
-      text-align: center;
-    }
-    .result-placeholder, .loading-container {
-      padding: 50px 20px;
-      border: 2px dashed rgba(255,255,255,0.1);
-      border-radius: 20px;
-      background: rgba(0,0,0,0.3);
-      color: #888;
-      font-size: 14px;
-    }
-    
-    .spinner {
-      width: 45px;
-      height: 45px;
-      border: 4px solid rgba(255,255,255,0.05);
-      border-left-color: var(--primary-color);
-      border-radius: 50%;
-      animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-      margin: 0 auto 20px auto;
-    }
+    .result-container { margin-top: 35px; text-align: center; }
+    .result-placeholder, .loading-container { padding: 50px 20px; border: 2px dashed rgba(255,255,255,0.1); border-radius: 20px; background: rgba(0,0,0,0.3); color: #888; font-size: 14px; }
+    .spinner { width: 45px; height: 45px; border: 4px solid rgba(255,255,255,0.05); border-left-color: var(--primary-color); border-radius: 50%; animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite; margin: 0 auto 20px auto; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
-
-    .image-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      animation: fadeIn 0.6s ease;
-    }
+    .image-container { display: flex; flex-direction: column; align-items: center; gap: 20px; animation: fadeIn 0.6s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
     /* CSS CORRIGIDO PARA NÃO ESTICAR IMAGENS 9:16 */
     .generated-image {
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      max-height: 70vh; /* Mantém a imagem dentro da tela do celular sem esticar */
-      border-radius: 16px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      object-fit: contain; /* REGRA DE OURO: Nunca estica, apenas ajusta proporção real */
-      display: block;
-      border: 1px solid rgba(255,255,255,0.08);
+      width: auto; max-width: 100%; height: auto; max-height: 70vh;
+      border-radius: 16px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      object-fit: contain; display: block; border: 1px solid rgba(255,255,255,0.08);
     }
     
     .download-btn {
-      padding: 14px 30px;
-      background: rgba(255,255,255,0.04);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
+      padding: 14px 30px; background: rgba(255,255,255,0.04); color: #fff;
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 12px;
+      font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.3s;
     }
-    .download-btn:hover {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
+    .download-btn:hover { background: #fff; color: #000; border-color: #fff; }
   </style>
 </head>
 <body>
 
   <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 
   <div class="sidebar" id="sidebar">
@@ -430,7 +227,7 @@
   <div class="content-container">
     <div class="header">
       <h1 class="panel-title">Gerador de Imagens</h1>
-      <p class="panel-subtitle">Inteligência Artificial por Plinio Studio</p>
+      <p class="panel-subtitle">Inteligência Artificial por Plínio Studio</p>
     </div>
 
     <div class="prompt-section">
@@ -506,42 +303,31 @@
     <button id="generateBtn" class="generate-btn" onclick="generateImage()">Criar Obra de Arte</button>
 
     <div class="result-container">
-      <div id="resultPlaceholder" class="result-placeholder">
-        <div>Sua criação aparecerá aqui.</div>
-      </div>
-      
+      <div id="resultPlaceholder" class="result-placeholder"><div>Sua criação aparecerá aqui.</div></div>
       <div id="loadingContainer" class="loading-container" style="display: none;">
-        <div class="spinner"></div>
-        <div>Processando os pixels da sua imagem...</div>
+        <div class="spinner"></div><div>Processando os pixels da sua imagem...</div>
       </div>
-      
       <div id="imageContainer" class="image-container" style="display: none;">
-        <img id="generatedImage" class="generated-image" alt="Imagem gerada por IA">
-        <br><br>
-        <button class="download-btn" onclick="downloadImage()">Salvar Imagem</button>
+        <img id="generatedImage" class="generated-image" src="" alt="Imagem Gerada">
+        <button id="downloadBtn" class="download-btn">Abrir Imagem em Alta Resolução</button>
       </div>
     </div>
   </div>
 
   <div class="modal-backdrop" id="prompt-modal">
-    <div class="modal-content">
-      <span class="modal-close" id="modal-close-prompt">&times;</span>
-      <h3>O que é um Prompt?</h3>
-      <div class="prompt-lesson">
-        <p><strong>O prompt</strong> é o ponto de partida para gerar imagens realistas e de qualidade com inteligência artificial. O segredo está nos detalhes. A IA precisa de instruções específicas para entender o que o usuário quer e evitar resultados genéricos.</p>
-        <p>Por isso, quanto mais completa e objetiva for a descrição, mais fiel será a imagem produzida. Em vez de termos técnicos ou adjetivos vagos, o ideal é usar frases curtas, diretas e que descrevam com clareza o objetivo, como <em>“foto profissional para perfil corporativo no LinkedIn”</em> ou <em>“retrato formal com fundo neutro e expressão confiante”</em>.</p>
-        <p>Na criação de fotos profissionais, o prompt deve seguir quatro critérios principais:</p>
+    <div class="modal-content prompt-lesson">
+        <span class="modal-close" id="modal-close-prompt">&times;</span>
+        <h3>O Segredo do Prompt Perfeito</h3>
+        <p>Um <strong>prompt</strong> é o comando que você dá à Inteligência Artificial. Quanto mais detalhes você fornecer, mais impressionante será o resultado.</p>
+        <p>Para imagens de alto padrão, siga esta estrutura:</p>
         <ul>
-            <li><strong>Ação ou assunto:</strong> define exatamente o que está acontecendo na imagem ou quem está sendo retratado. Pode incluir gênero, idade, postura e a atividade retratada. Exemplo: <em>“homem sentado à mesa de reunião, sorrindo levemente, com postura ereta”</em>.</li>
-            <li><strong>Iluminação:</strong> especifica o tipo de luz e o efeito desejado na imagem. O usuário pode indicar intensidade, direção e clima, como <em>“luz natural suave vindo da lateral, criando sombras sutis no rosto”</em> ou <em>“iluminação uniforme de estúdio para realçar detalhes do rosto”</em>.</li>
-            <li><strong>Fundo ou cenário:</strong> determina o ambiente em que a pessoa está inserida, influenciando a percepção profissional. Pode ser neutro, como <em>“fundo branco ou cinza”</em>, ou contextual, citando um <em>“escritório moderno com livros e computador ao fundo”</em>. Além disso, o usuário também pode incluir efeito de profundidade, como desfoque.</li>
-            <li><strong>Expressão ou detalhe:</strong> foca nas características faciais, posturas e pequenos elementos que transmitem profissionalismo e naturalidade.</li>
+            <li><strong>Assunto Principal:</strong> Quem ou o que é? (Ex: Um leão dourado, um carro futurista)</li>
+            <li><strong>Cenário/Ambiente:</strong> Onde está? (Ex: Em uma floresta chuvosa à noite)</li>
+            <li><strong>Iluminação:</strong> Como a luz bate? (Ex: Luz cinematográfica, golden hour)</li>
+            <li><strong>Qualidade técnica:</strong> (Ex: 8k, fotorrealista, hyper-detalhado)</li>
         </ul>
-        <p><strong>Exemplo Prático:</strong> “Olhar confiante, sorriso discreto, roupa social bem ajustada, cabelo arrumado e mãos visíveis sobre a mesa”.</p>
-        <div class="signature">
-            Mentor: Plínio Fabrício
-        </div>
-      </div>
+        <p><em>Dica de Ouro:</em> A IA entende melhor comandos em <strong>Inglês</strong>. Se possível, traduza seu texto antes de gerar!</p>
+        <div class="signature">Plínio Studio - Inovação Audiovisual</div>
     </div>
   </div>
 
@@ -553,7 +339,6 @@
     const ratioCards = document.querySelectorAll('.ratio-card');
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
-    
     const promptLink = document.getElementById('prompt-link');
     const promptModal = document.getElementById('prompt-modal');
     const modalClosePrompt = document.getElementById('modal-close-prompt');
@@ -561,7 +346,7 @@
     let selectedStyle = '';
     let selectedWidth = 1024;
     let selectedHeight = 1024;
-    let retryCount = 0; // Sistema de auto-recuperação
+    let retryCount = 0;
 
     const showLoading = () => {
       document.getElementById('resultPlaceholder').style.display = 'none';
@@ -613,7 +398,6 @@
         });
     });
 
-    // Motor de Geração com Auto-Retry (Anti-Falhas)
     const generateImage = () => {
       let userPrompt = promptInput.value.trim();
       if (!userPrompt) {
@@ -626,89 +410,55 @@
       let finalPrompt = userPrompt;
       if (selectedStyle) finalPrompt += `, ${selectedStyle}`;
 
-      // A seed muda sempre, garantindo imagens novas e burlando o cache
       const randomSeed = Math.floor(Math.random() * 10000000);
       const encodedPrompt = encodeURIComponent(finalPrompt);
-      
-      // URL direta e limpa para a API (com enhance para melhorar a qualidade baseada no seu texto)
       const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${selectedWidth}&height=${selectedHeight}&seed=${randomSeed}&nologo=true&enhance=true`;
 
       const imgEl = document.getElementById('generatedImage');
       
       imgEl.onload = () => {
-          retryCount = 0; // Sucesso, zera os erros
+          retryCount = 0;
           showImageBlock();
       };
       
       imgEl.onerror = () => {
           if(retryCount < 1) { 
-              // Se falhar a primeira vez, o sistema tenta de novo silenciosamente
               retryCount++;
               generateImage(); 
           } else {
-              // Se falhar duas vezes seguidas, avisa o usuário de forma clara
               resetUI();
               retryCount = 0;
               alert('Os servidores da Inteligência Artificial estão sobrecarregados no momento. Por favor, aguarde alguns segundos e tente gerar novamente.');
           }
       };
 
-      // Dispara a requisição
       imgEl.src = imageUrl;
+
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.onclick = () => { window.open(imageUrl, '_blank'); };
     };
 
-    const downloadImage = async () => {
-      const img = document.getElementById('generatedImage');
-      if (!img.src) return;
-      try {
-        const response = await fetch(img.src);
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = `plinio-studio-${Date.now()}.jpg`;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-      } catch (error) {
-        alert('Para salvar, segure o dedo em cima da imagem gerada e escolha "Fazer download da imagem" ou "Salvar em Fotos".');
-      }
-    };
-
-    menuToggle.addEventListener('click', (event) => {
-      event.stopPropagation();
+    menuToggle.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       menuToggle.classList.toggle('active');
     });
 
-    document.addEventListener('click', (event) => {
-      if (sidebar.classList.contains('open') && !sidebar.contains(event.target)) {
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && sidebar.classList.contains('open')) {
         sidebar.classList.remove('open');
         menuToggle.classList.remove('active');
       }
     });
 
-    promptLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      sidebar.classList.remove('open'); 
-      menuToggle.classList.remove('active');
-      promptModal.style.display = 'flex'; 
+    promptLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        sidebar.classList.remove('open');
+        menuToggle.classList.remove('active');
+        promptModal.style.display = 'flex';
     });
 
     modalClosePrompt.addEventListener('click', () => promptModal.style.display = 'none');
-    
-    promptModal.addEventListener('click', (e) => {
-      if (e.target === promptModal) promptModal.style.display = 'none';
-    });
-
+    window.addEventListener('click', (e) => { if (e.target === promptModal) promptModal.style.display = 'none'; });
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
