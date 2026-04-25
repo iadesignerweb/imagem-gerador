@@ -8,7 +8,6 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
     :root {
-      /* PALETA DE CORES - VERDE NEON DO HUB */
       --primary-color: #00ffb3; 
       --primary-dark: #00cc8e;
       --background-dark: #121212; 
@@ -25,7 +24,6 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      /* Degradê sofisticado sem azul */
       background: radial-gradient(circle at top, #1e1e21, #0d0d1a) fixed;
       color: var(--text-light);
       display: flex;
@@ -63,12 +61,8 @@
       z-index: 1001; 
     }
     .menu-toggle span {
-      display: block;
-      width: 100%;
-      height: 3px;
-      background: var(--primary-color);
-      border-radius: 3px;
-      transition: all 0.3s ease;
+      display: block; width: 100%; height: 3px; background: var(--primary-color);
+      border-radius: 3px; transition: all 0.3s ease;
     }
     .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
     .menu-toggle.active span:nth-child(2) { opacity: 0; }
@@ -76,61 +70,35 @@
 
     /* Sidebar */
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 280px;
-      height: 100%;
-      background: rgba(10, 10, 12, 0.98); 
-      backdrop-filter: blur(15px);
-      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
-      transform: translateX(-100%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 1000;
-      padding-top: 100px;
-      border-right: 1px solid var(--border-color);
+      position: fixed; top: 0; left: 0; width: 280px; height: 100%;
+      background: rgba(10, 10, 12, 0.98); backdrop-filter: blur(15px);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8); transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;
+      padding-top: 100px; border-right: 1px solid var(--border-color);
     }
     .sidebar.open { transform: translateX(0); }
     .sidebar ul { list-style: none; padding: 0; margin: 0; }
     .sidebar li a {
-      display: block;
-      padding: 18px 35px;
-      color: var(--text-light);
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.2s;
+      display: block; padding: 18px 35px; color: var(--text-light); text-decoration: none;
+      font-size: 16px; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.2s;
     }
-    .sidebar li a:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--primary-color);
-      padding-left: 40px;
-    }
+    .sidebar li a:hover { background: rgba(255, 255, 255, 0.05); color: var(--primary-color); padding-left: 40px; }
 
-    /* Modais Genéricos */
+    /* Modais */
     .modal-backdrop {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.88);
-        display: none; justify-content: center; align-items: center;
-        z-index: 1005; backdrop-filter: blur(10px);
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.88);
+        display: none; justify-content: center; align-items: center; z-index: 1005; backdrop-filter: blur(10px);
     }
     .modal-content {
-        background: rgba(240, 240, 240, 0.8);
-        padding: 35px; border-radius: 24px;
-        max-width: 500px; width: 90%; text-align: left;
-        position: relative; border: 2px solid var(--primary-color);
+        background: rgba(240, 240, 240, 0.8); padding: 35px; border-radius: 24px; max-width: 500px;
+        width: 90%; text-align: left; position: relative; border: 2px solid var(--primary-color);
         box-shadow: 0 25px 50px rgba(0,0,0,0.9); max-height: 85vh; overflow-y: auto;
     }
     .modal-close {
-        position: absolute; top: 18px; right: 22px;
-        font-size: 30px; color: #666; cursor: pointer; transition: color 0.2s; z-index: 10;
+        position: absolute; top: 18px; right: 22px; font-size: 30px; color: #666; cursor: pointer; transition: color 0.2s; z-index: 10;
     }
     .modal-close:hover { color: var(--primary-color); }
-    .modal-content h3 {
-        margin-top: 0; color: #222; font-weight: 600; font-size: 24px; margin-bottom: 20px;
-    }
+    .modal-content h3 { margin-top: 0; color: #222; font-weight: 600; font-size: 24px; margin-bottom: 20px; }
     .prompt-lesson p, .prompt-lesson li { color: #444; line-height: 1.7; font-size: 14px; margin-bottom: 15px; }
     .prompt-lesson ul { padding-left: 20px; margin-bottom: 15px; }
     .prompt-lesson strong { color: #111; }
@@ -178,7 +146,7 @@
     .style-card.active, .ratio-card.active { background: var(--card-selected-background); color: var(--primary-color); border-color: var(--primary-color); box-shadow: 0 0 15px rgba(0, 255, 179, 0.2); }
     .style-card span, .example-card span, .ratio-card span { font-weight: 600; font-size: 11px; line-height: 1.4; }
 
-    /* Botão Gerar */
+    /* Botões */
     .generate-btn {
       width: 100%; padding: 18px; background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
       border: none; border-radius: 18px; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;
@@ -196,7 +164,6 @@
     .image-container { display: flex; flex-direction: column; align-items: center; gap: 20px; animation: fadeIn 0.6s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* CSS CORRIGIDO PARA NÃO ESTICAR IMAGENS 9:16 */
     .generated-image {
       width: auto; max-width: 100%; height: auto; max-height: 70vh;
       border-radius: 16px; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
@@ -309,7 +276,7 @@
       </div>
       <div id="imageContainer" class="image-container" style="display: none;">
         <img id="generatedImage" class="generated-image" src="" alt="Imagem Gerada">
-        <button id="downloadBtn" class="download-btn">Abrir Imagem em Alta Resolução</button>
+        <button id="downloadBtn" class="download-btn">Baixar Imagem</button>
       </div>
     </div>
   </div>
@@ -398,6 +365,24 @@
         });
     });
 
+    // Função para forçar o download no dispositivo do usuário
+    const forceDownload = async (url, filename) => {
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(blobUrl);
+      } catch (error) {
+        alert('Erro ao tentar baixar a imagem. Verifique sua conexão.');
+      }
+    };
+
     const generateImage = () => {
       let userPrompt = promptInput.value.trim();
       if (!userPrompt) {
@@ -435,7 +420,15 @@
       imgEl.src = imageUrl;
 
       const downloadBtn = document.getElementById('downloadBtn');
-      downloadBtn.onclick = () => { window.open(imageUrl, '_blank'); };
+      downloadBtn.innerText = 'Baixar Imagem';
+      
+      // Quando clicar em Baixar Imagem, executa a função de forçar download
+      downloadBtn.onclick = () => { 
+          downloadBtn.innerText = 'Baixando...';
+          forceDownload(imageUrl, 'PlinioStudio_ArteIA.jpg').then(() => {
+              downloadBtn.innerText = 'Baixar Imagem';
+          });
+      };
     };
 
     menuToggle.addEventListener('click', () => {
